@@ -1,0 +1,42 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── Courses ──────────────────────────────────────────────────────────────
+    // Anyone can read published courses; only admins can write.
+    match /courses/{courseId} {
+      allow read: if true;
+      allow write: if request.auth != null && isAdmin();
+    }
+
+    // ── Reviews ──────────────────────────────────────────────────────────────
+    // Anyone can read; authenticated users can create their own review.
+    match /reviews/{reviewId} {
+      allow read: if true;
+      allow create: if request.auth != null
+                    && request.resource.data.userId == request.auth.uid;
+      allow update, delete: if request.auth != null
+                    && resource.data.userId == request.auth.uid;
+    }
+
+    // ── Users ─────────────────────────────────────────────────────────────────
+    // Users can only read/write their own profile.
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // ── Progress ──────────────────────────────────────────────────────────────
+    // Progress docs use the pattern userId_courseId as the document ID.
+    match /progress/{progressId} {
+      allow read, write: if request.auth != null
+                         && resource == null
+                            ? request.resource.data.userId == request.auth.uid
+                            : resource.data.userId == request.auth.uid;
+    }
+  }
+
+  // ── Helper ────────────────────────────────────────────────────────────────
+  function isAdmin() {
+    return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+  }
+}
