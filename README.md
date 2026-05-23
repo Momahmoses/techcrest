@@ -1,11 +1,11 @@
-# TechCrest LMS — Premium Tech Education Platform
+# TechCrest LMS, Premium Tech Education Platform
 
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue.svg)](https://typescriptlang.org)
 [![Next.js](https://img.shields.io/badge/Next.js-14-black.svg)](https://nextjs.org)
 [![Firebase](https://img.shields.io/badge/Firebase-Auth_%26_Firestore-orange.svg)](https://firebase.google.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-A full-stack Learning Management System for premium tech education — built with Next.js 14, Firebase, and Tailwind CSS. Supports course creation, student enrolment, progress tracking, and live assessments.
+A full-stack Learning Management System for premium tech education, built with Next.js 14, Firebase, and Tailwind CSS. Supports course creation, student enrolment, progress tracking, and live assessments.
 
 ---
 
@@ -59,5 +59,5 @@ NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=
 
 ## Author
 
-**Momah Moses** — Geospatial AI Engineer & Data Scientist
+**Momah Moses**, Geospatial AI Engineer & Data Scientist
 [GitHub](https://github.com/Momahmoses) · [Portfolio](https://momahmoses-ng-gis-portfolio.hf.space)
